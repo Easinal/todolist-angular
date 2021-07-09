@@ -1,0 +1,73 @@
+<div>
+  <label for="new-todo">TODO name:</label>
+  <input id="new-todo" #todoName />
+  <button class="add-button" (click)="add(todoName.value);todoName.value=''">
+    Add
+  </button>
+</div>
+
+<div *ngIf = "Filter==='all'">
+  <ul class = todos>
+    <li *ngFor = "let todo of todos">
+      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+      {{todo.name}}
+      <button class="delete-button" (click) = "delete(todo.id)">
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf = "Filter==='active'">
+  <ul class = todos>
+    <li *ngFor = "let todo of CheckFilter(true)">
+      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+      {{todo.name}}
+      <button class="delete-button" (click) = "delete(todo.id)">
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf = "Filter==='done'">
+  <ul class = todos>
+    <li *ngFor = "let todo of CheckFilter(false)">
+      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+      {{todo.name}}
+      <button class="delete-button" (click) = "delete(todo.id)">
+        Delete
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div>
+  Filter:
+  <input type="radio" id="ALL" #ALL name="Filter" (click)="changeFilter(ALL.value)" value="all" checked>
+  <label for="ALL">ALL</label>
+  <input type="radio" id="ACTIVE" #ACTIVE name="Filter" (click)="changeFilter(ACTIVE.value)" value="active">
+  <label for="ACTIVE">ACTIVE</label>
+  <input type="radio" id="DONE" #DONE name="Filter" (click)="changeFilter(DONE.value)" value="done">
+  <label for="DONE">DONE</label>
+</div>
+
+<!--
+<ul class = todos2>
+  <li *ngFor = "let todo of todos">
+    <div *ngIf = "todo.checked===true">
+      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+      {{todo.name}}
+    </div>
+  </li>
+</ul>
+
+<ul class = todos2>
+  <li *ngFor = "let todo of todos">
+    <div *ngIf = "todo.checked===false">
+      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+      {{todo.name}}
+    </div>
+  </li>
+</ul>
+-->
