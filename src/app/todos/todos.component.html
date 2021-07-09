@@ -6,39 +6,26 @@
   </button>
 </div>
 
-<div *ngIf = "Filter==='all'">
+<div>
   <ul class = todos>
-    <li *ngFor = "let todo of todos">
-      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
-      {{todo.name}}
-      <button class="delete-button" (click) = "delete(todo.id)">
-        Delete
-      </button>
-    </li>
-  </ul>
-</div>
-
-<div *ngIf = "Filter==='active'">
-  <ul class = todos>
-    <li *ngFor = "let todo of CheckFilter(true)">
-      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
-      {{todo.name}}
-      <button class="delete-button" (click) = "delete(todo.id)">
-        Delete
-      </button>
-    </li>
-  </ul>
-</div>
-
-<div *ngIf = "Filter==='done'">
-  <ul class = todos>
-    <li *ngFor = "let todo of CheckFilter(false)">
-      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
-      {{todo.name}}
-      <button class="delete-button" (click) = "delete(todo.id)">
-        Delete
-      </button>
-    </li>
+    <div *ngIf = "Filter!=='done'">
+      <li *ngFor = "let todo of CheckFilter(true)">
+        <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+        {{todo.name}}
+        <button class="delete-button" (click) = "delete(todo.id)">
+          Delete
+        </button>
+      </li>
+    </div>
+    <div *ngIf = "Filter!=='active'">
+      <li *ngFor = "let todo of CheckFilter(false)">
+        <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
+        {{todo.name}}
+        <button class="delete-button" (click) = "delete(todo.id)">
+          Delete
+        </button>
+      </li>
+    </div>
   </ul>
 </div>
 
@@ -51,23 +38,3 @@
   <input type="radio" id="DONE" #DONE name="Filter" (click)="changeFilter(DONE.value)" value="done">
   <label for="DONE">DONE</label>
 </div>
-
-<!--
-<ul class = todos2>
-  <li *ngFor = "let todo of todos">
-    <div *ngIf = "todo.checked===true">
-      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
-      {{todo.name}}
-    </div>
-  </li>
-</ul>
-
-<ul class = todos2>
-  <li *ngFor = "let todo of todos">
-    <div *ngIf = "todo.checked===false">
-      <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
-      {{todo.name}}
-    </div>
-  </li>
-</ul>
--->
