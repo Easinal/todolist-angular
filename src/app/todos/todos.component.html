@@ -8,8 +8,8 @@
 
 <div>
   <ul class = todos>
-    <div *ngIf = "Filter!=='done'">
-      <li *ngFor = "let todo of CheckFilter(true)">
+    <div *ngIf = "Filter!=='active'">
+      <li *ngFor = "let todo of CheckFilter(false)">
         <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
         {{todo.name}}
         <button class="delete-button" (click) = "delete(todo.id)">
@@ -17,8 +17,8 @@
         </button>
       </li>
     </div>
-    <div *ngIf = "Filter!=='active'">
-      <li *ngFor = "let todo of CheckFilter(false)">
+    <div *ngIf = "Filter!=='done'">
+      <li *ngFor = "let todo of CheckFilter(true)">
         <input type="checkbox" [checked]="todo.checked" (change)="todo.checked = !todo.checked">
         {{todo.name}}
         <button class="delete-button" (click) = "delete(todo.id)">

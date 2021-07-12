@@ -28,9 +28,10 @@ export class TodosComponent implements OnInit {
   add(newname: string): void {
     newname = newname.trim();
     console.log("adding");
+    
     if (!newname) { return; }
     const newtodo: Todo ={
-      id: this.todos.length,
+      id: Math.random(),
       name: newname,
       checked: false
     };
@@ -39,11 +40,16 @@ export class TodosComponent implements OnInit {
 
   delete(deleteid: number): void {
     console.log("deleting");
-    this.todos.splice(deleteid-1, 1);
-    var k = 1;
+    var k = 0;
     for(let i of this.todos){
-      i.id = k;
-      ++k;
+      if(i.id==deleteid){
+        this.todos.splice(k, 1);
+        break;
+      }
+      else{
+        ++k;
+      }
+      
     }
   }
 
